@@ -69,7 +69,7 @@ function DoublyLinkedList() {
         previous.next = current.next;
         current.next.prev = previous;
       }
-      length—;
+      length--;
       return current.element;
     } else {
       return null;
