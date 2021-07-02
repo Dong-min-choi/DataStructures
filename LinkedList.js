@@ -6,7 +6,7 @@ function LinkedList() {
   let length = 0;
   let head = null;
   //리스트에 원소 추가
-  this.append = function () {
+  this.append = function (element) {
     let node = new Node(element);
     let current;
     //원소를 끝에 추가
@@ -22,7 +22,7 @@ function LinkedList() {
     length++; //리스트 사이즈 업데이트
   }
   //원소 삭제
-  this.remove = function (position) { //삭제할 원소의 위치를 인자로 받음
+  this.removeAt = function (position) { //삭제할 원소의 위치를 인자로 받음
     if (position > -1 && position < length) {
       let current = head, previous;
       index = 0;
@@ -40,5 +40,61 @@ function LinkedList() {
       length--;
     } else return null;
   }
-
+  //임의의 위치에 원소 삽입
+  this.insert = function (position, element) {
+    //범위 외의 값인지 체크
+    if (position > 0 && position <= length) {
+      let node = new Node(element), current = head, previous, index = 0;
+      if (position == 0) {
+        node.next = current;
+        head = node;
+      } else {
+        while (index++ < position) {
+          previous = current;
+          current = current.next;
+        }
+        node.next = current;
+        previous.next = node;
+      }
+      length++;
+      return true;
+    } else { //범위를 벗어났다면 false 반환
+      return false;
+    }
+  }
+  //출력
+  this.print = function () {
+    let current = head, string = '';
+    while (current) {
+      string += current.element;
+      current = current.next;
+    }
+    return string;
+  }
+  //인덱스 반환
+  this.indexOf = function (element) {
+    let current = head, index = -1;
+    while (current) {
+      if (element === current.element) { //찾는 원소를 발견하면 인덱스 반환
+        return index;
+      }
+      index++;
+      current = current.next;
+    }
+    return -1; //발견된 원소가 없으면 -1 반환
+  }
+  //원소 삭제 removeAt은 원소의 위치를 인자로 받는 반면에 인자로 삭제할 원소를 받음
+  this.remove = function (element) {
+    let index = this.indexOf(element); //원소의 인덱스를 찾아서
+    return this.removeAt(index); //removeAt에 인자로 전달
+  }
+  this.isEmpty = function () { //원소가 하나라도 있으면 true, 아니면 false 반환
+    return length === 0;
+  }
+  this.size = function () {
+    return length;
+  }
+  this.getHead = function () {
+    return head;
+  }
 }
