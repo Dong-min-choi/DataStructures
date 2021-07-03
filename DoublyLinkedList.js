@@ -4,9 +4,21 @@ function DoublyLinkedList() {
     this.next = null;
     this.prev = null;
   }
-
   let length = 0;
   let head = null, tail = null;
+  //원소 추가
+  this.append = function (element) {
+    let node = new Node(element), current;
+    if (head === null) { //리스트가 비어있다면
+      head = node;
+      tail = node;
+    } else {
+      tail.next = node;
+      node.prev = tail;
+      tail = node;
+    }
+    length++; //리스트의 사이즈 업데이트
+  }
   //임의의 위치에 원소 삽입
   this.insert = function (position, element) {
     //범위 외의 값인지 체크
@@ -74,5 +86,30 @@ function DoublyLinkedList() {
     } else {
       return null;
     }
+  }
+  this.indexOf = function (element) {
+    let current = head, index = -1;
+    if (element == current.element) { //첫 번째 원소 체크
+      return 0; //첫 번째 원소의 인덱스는 0
+    }
+    index++;
+    //중간 원소 체크
+    while (current.next) {
+      if (element === current.element) {
+        return index;
+      }
+      current = current.next;
+      index++;
+    }
+    //마지막 원소 체크
+    if (element == current.element) {
+      return index;
+    }
+    return -1; //원소를 찾지 못하면
+  }
+
+  this.remove = function (element) {
+    let index = this.indexOf(element);
+    return this.removeAt(index);
   }
 }
