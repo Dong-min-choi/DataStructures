@@ -64,10 +64,10 @@ function LinkedList() {
   }
   //출력
   this.print = function () {
-    let current = head, string = '';
-    while (current) {
-      string += current.element;
+    let current = head, string = current.element;
+    while (current.next !== null) {
       current = current.next;
+      string += ', ' + current.element;
     }
     return string;
   }
