@@ -43,7 +43,7 @@ function LinkedList() {
   //임의의 위치에 원소 삽입
   this.insert = function (position, element) {
     //범위 외의 값인지 체크
-    if (position > 0 && position <= length) {
+    if (position >= 0 && position <= length) {
       let node = new Node(element), current = head, previous, index = 0;
       if (position == 0) {
         node.next = current;
