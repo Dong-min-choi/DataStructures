@@ -112,4 +112,18 @@ function DoublyLinkedList() {
     let index = this.indexOf(element);
     return this.removeAt(index);
   }
+
+  this.toString = function () {
+    let current = head, str = current.element;
+    while (current.next !== null) {
+      current = current.next;
+      str += ', ' + current.element;
+    }
+
+    return str.toString();
+  }
+
+  this.print = function(){
+    console.log(this.toString());
+  }
 }
