@@ -126,7 +126,7 @@ function CircularLinkedList() {
         let current = head,
             index = -1;
 
-        if (element == current.element) {//천 번째 노드라면
+        if (element == current.element) {//첫 번째 노드라면
             return 0;
         }
 
