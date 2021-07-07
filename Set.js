@@ -67,6 +67,35 @@ function Set() {
       }
     }
   }
+
+  this.difference = function (otherSet) {
+    let differenceSet = new Set(); //차집합 생성
+
+    let values = this.values();
+    for (let i = 0; i < values.length; i++) {
+      if (!otherSet.has(values[i])) { //원소가 A집합에만 존재하고 B집합에는 존재하지 않는 경우에만 차집합에 추가
+        differenceSet.add(values[i]);
+      }
+    }
+    return differenceSet;
+  }
+
+  this.subset = function (otherSet) {
+
+    if (this.size() > otherSet.size()) { //부분집합은 비교 대상 집합보다 원소의 개수가 같거나 적어야함
+      return false;
+    } else {
+      let values = this.values();
+
+      for (let i = 0; i < values.length; i++) {
+        if (!otherSet.has(values[i])) { //원소가 하나라도 otherSet에 존재하지 않으면 부분집합이 아니므로 false 반환
+          return false
+        }
+      }
+      return true;
+    }
+  }
+
 }
 
 let set = new Set();
@@ -82,10 +111,15 @@ let setB = new Set();
 setA.add(1);
 setA.add(2);
 setA.add(3);
+setA.add(4);
+
 
 setB.add(4);
 setB.add(5);
 setB.add(6);
 
-let unionAB = setA.union(setB);
+let unionAB = setA.union(setB); //A합집합B
 console.log(unionAB.values());
+
+let differenceAB = setA.difference(setB); //A차집합B
+console.log(differenceAB.values());
