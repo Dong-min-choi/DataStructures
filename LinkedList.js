@@ -64,13 +64,8 @@ function LinkedList() {
   }
   //출력
   this.print = function () {
-    let current = head, string = current.element;
-    while (current.next !== null) {
-      current = current.next;
-      string += ', ' + current.element;
-    }
-    return string;
-  }
+    console.log(this.toString());
+  };
   //인덱스 반환
   this.indexOf = function (element) {
     let current = head, index = -1;
@@ -96,5 +91,15 @@ function LinkedList() {
   }
   this.getHead = function () {
     return head;
+  }
+
+  this.toString = function () {
+    let current = head, string = '';
+
+    while (current) {
+      string += current.element;
+      current = current.next;
+    }
+    return string;
   }
 }
