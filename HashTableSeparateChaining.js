@@ -1,8 +1,8 @@
 function HashTableSeparateChaining(){
 
-  var table = [];
+  let table = [];
 
-  var ValuePair = function(key, value){
+  let ValuePair = function(key, value){
       this.key = key;
       this.value = value;
 
@@ -11,35 +11,35 @@ function HashTableSeparateChaining(){
       }
   };
 
-  var loseloseHashCode = function (key) {
-      var hash = 0;
-      for (var i = 0; i < key.length; i++) {
+  let loseloseHashCode = function (key) {
+      let hash = 0;
+      for (let i = 0; i < key.length; i++) {
           hash += key.charCodeAt(i);
       }
       return hash % 37;
   };
 
-  var hashCode = function(key){
+  let hashCode = function(key){
       return loseloseHashCode(key);
   };
 
   this.put = function(key, value){
-      var position = hashCode(key);
+      let position = hashCode(key);
       console.log(position + ' - ' + key);
 
       if (table[position] == undefined) {
           table[position] = new LinkedList();
       }
-      table[position].append(new ValuePair(key, value));
+      table[position].append(new ValuePair(key, value)); //append는 LinkedList에서 정의한 메서드
   };
 
   this.get = function(key) {
-      var position = hashCode(key);
+      let position = hashCode(key);
 
       if (table[position] !== undefined  && !table[position].isEmpty()){
 
           //키/값을 찾기 위해 연결 리스트를 순회한다
-          var current = table[position].getHead();
+          let current = table[position].getHead();
 
           while(current.next){
               if (current.element.key === key){
@@ -58,12 +58,12 @@ function HashTableSeparateChaining(){
 
   this.remove = function(key){
 
-      var position = hashCode(key);
+      let position = hashCode(key);
 
       if (table[position] !== undefined){
 
           //키/값을 찾기 위해 연결 리스트를 순회한다
-          var current = table[position].getHead();
+          let current = table[position].getHead();
 
           while(current.next){
               if (current.element.key === key){
@@ -90,7 +90,7 @@ function HashTableSeparateChaining(){
   };
 
   this.print = function() {
-      for (var i = 0; i < table.length; ++i) {
+      for (let i = 0; i < table.length; ++i) {
           if (table[i] !== undefined) {
              console.log(table[i].toString());
           }
