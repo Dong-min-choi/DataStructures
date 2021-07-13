@@ -11,25 +11,25 @@ function LinkedList() {
     let current;
     //원소를 끝에 추가
     if (head === null) { //리스트가 비어있다면
-      head = node;
+      head = node; //이 노드가 헤드
     } else {
-      current = head;
+      current = head; //head를 현재 노드라 하고
       while (current.next) { //마지막 노드까지 순회
         current = current.next;
       }
-      current.next = node; //원소를 마지막 노드에 연결  
+      current.next = node; //새 노드를 마지막 노드에 연결  
     }
     length++; //리스트 사이즈 업데이트
   }
   //원소 삭제
   this.removeAt = function (position) { //삭제할 원소의 위치를 인자로 받음
     if (position > -1 && position < length) {
-      let current = head, previous;
-      index = 0;
+      let current = head, previous, index = 0;
       //첫 번째 원소 삭제
       if (position === 0) {
         head = current.next;
       } else {
+
         while (index++ < position) {
           previous = current;
           current = current.next;
@@ -44,15 +44,22 @@ function LinkedList() {
   this.insert = function (position, element) {
     //범위 외의 값인지 체크
     if (position >= 0 && position <= length) {
-      let node = new Node(element), current = head, previous, index = 0;
+
+      let node = new Node(element),
+        current = head,
+        previous,
+        index = 0;
+
       if (position == 0) {
         node.next = current;
         head = node;
       } else {
+
         while (index++ < position) {
           previous = current;
           current = current.next;
         }
+
         node.next = current;
         previous.next = node;
       }
@@ -94,7 +101,8 @@ function LinkedList() {
   }
 
   this.toString = function () {
-    let current = head, string = '';
+    let current = head,
+      string = '';
 
     while (current) {
       string += current.element;
