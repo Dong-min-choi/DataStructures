@@ -35,8 +35,58 @@ function BinarySearchTree() {
       if (node.right === null) {
         node.right = newNode; //오른쪽 자식으로
       } else {
-        insertNode(npde.right, newNode);
+        insertNode(node.right, newNode);
       }
     }
   };
+
+  //중위 순회
+  this.inOrderTraverse = function (callback) {
+    inOrderTraverseNode(root, callback);
+  }
+
+  let inOrderTraverseNode = function (node, callback) {
+
+    if (node !== null) {
+      inOrderTraverseNode(node.left, callback);
+      callback(node.key);
+      inOrderTraverseNode(node.right, callback);
+    }
+  };
+
+  //전위 순회
+  this.preOrderTraverse = function (callback) {
+    preOrderTraverseNode(root, callback);
+  }
+
+  let preOrderTraverseNode = function (node, callback) {
+
+    if (node !== null) {
+      callback(node.key);
+      preOrderTraverseNode(node.left, callback);
+      preOrderTraverseNode(node.right, callback);
+    }
+  };
+
+  //후위 순회
+  this.postOrderTraverse = function (callback) {
+    postOrderTraverseNode(root, callback);
+  }
+
+  let postOrderTraverseNode = function (node, callback) {
+
+    if (node !== null) {
+
+      postOrderTraverseNode(node.left, callback);
+      postOrderTraverseNode(node.right, callback);
+      callback(node.key);
+    }
+  };
+
+}
+
+
+//노드 출력을 위한 헬퍼 함수
+let callback = function (values) {
+  console.log(values);
 }
