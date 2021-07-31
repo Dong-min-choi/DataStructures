@@ -15,7 +15,7 @@ function ArrayList() {
   this.bubbleSort = function () {
     let length = array.length;
     for (let i = 0; i < length; i++) {
-      for (let j = 0; j < length - 1; j++) {
+      for (let j = 0; j < length - 1 - i; j++) {
         if (array[j] > array[j + 1]) {
           swap(j, j + 1);
         }
@@ -23,11 +23,31 @@ function ArrayList() {
     }
   };
 
-  let swap = function (a, b) { 
+  let swap = function (a, b) {
     let temp = array[a];
     array[a] = array[b];
     array[b] = temp;
   };
+
+  this.selectionSort = function () {
+    let length = array.length;
+    let indexMin;
+
+    for (let i = 0; i < length - 1; i++) {
+      indexMin = i;
+
+      for (let j = i; j < length; j++) {
+
+        if (array[indexMin] > array[j]) {
+          indexMin = j;
+        }
+      }
+      if (i !== indexMin) {
+        swap(i, indexMin);
+      }
+    }
+  };
+
 }
 
 
