@@ -48,6 +48,21 @@ function ArrayList() {
     }
   };
 
+  this.insertionSort = function () {
+    let length = array.length;
+    let j;
+    let temp;
+
+    for (let i = 1; i < length; i++) { //첫 번째 원소는 이미 정렬된 상태라고 보고 두 번째 원소부터 배열 순회
+      j = i;
+      temp = arra[i];
+      while (j > 0 && array[j - 1] > temp) { //j가 0보다 크고 직전 인덱스의 원소가 인덱스i 원소보다 크면
+        array[j] = array[j - 1];//직전 인덱스 원소를 i로 옮기고
+        j--;//j를 1만큼 감소
+      }
+      array[j] = temp;
+    }
+  };
 }
 
 
