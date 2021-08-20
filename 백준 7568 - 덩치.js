@@ -9,7 +9,7 @@ function solution() {
     for (let i = 1; i <= input[0]; i++) {
 
         for (let j = 1; j <= input[0]; j++) {
-            let weight1 = input[i].split(' ')[0];
+            let weight1 = +input[i].split(' ')[0];
             let weight2 = +input[j].split(' ')[0];
             let height1 = +input[i].split(' ')[1];
             let height2 = +input[i].split(' ')[1];
