@@ -1,6 +1,5 @@
 const fs = require('fs');
-// let input = fs.readFileSync('/dev/stdin').toString().split('\n');
-let input = fs.readFileSync('./input.txt').toString().split('\n');
+let input = fs.readFileSync('/dev/stdin').toString().split('\n');
 
 
 let num = +input[0];
@@ -23,10 +22,11 @@ function average(num, array) {
   return value;
 }
 
-function meanValue(num, array) {
+function middleValue(num, array) {
   array.sort((a, b) => a - b);
   return array[(num + 1) / 2 - 1];
 }
+
 
 function mode(num, array) {
 
@@ -64,6 +64,6 @@ function range(num, array) {
 
 
 console.log(average(num, array));
-console.log(meanValue(num, array));
+console.log(middleValue(num, array));
 console.log(mode(num, array));
 console.log(range(num, array));
